@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laptop Wale - Karachi's #1 Laptop Store</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #4CAF50;
+      --green-bright: #39FF14;
+      --green-dark: #2d7a30;
+      --green-glass: rgba(76, 175, 80, 0.15);
+      --green-glass2: rgba(76, 175, 80, 0.08);
+      --text: #ffffff;
+      --text-muted: #b0b0b0;
+      --white: #ffffff;
+      --light: #151515;
+      --bg: #0a0a0a;
+      --border: rgba(76, 175, 80, 0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--green) 0%, #000 100%);
+      border-radius: 5px;
+      border: 1px solid rgba(76, 175, 80, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--green-bright);
+      box-shadow: 0 0 10px var(--green-bright);
+    }
+
+    /* ── SCREEN TOPPER ── */
+    .screen-topper {
+      background: linear-gradient(270deg, #050505, #1a3a1a, #050505);
+      background-size: 200% 200%;
+      animation: topperBG 5s ease infinite;
+      color: #fff;
+      height: 40px;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      position: sticky;
+      top: 0;
+      z-index: 101;
+      border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+      overflow: hidden;
+      display: flex;
+    }
+
+    .topper-track {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .fade-item {
+      position: absolute;
+      opacity: 0;
+      white-space: nowrap;
+      animation: topFade 12s infinite ease-in-out;
+    }
+    .fade-item:nth-child(1) { animation-delay: 0s; }
+    .fade-item:nth-child(2) { animation-delay: 4s; }
+    .fade-item:nth-child(3) { animation-delay: 8s; }
+
+    @keyframes topFade {
+      0%, 33.33%, 100% { opacity: 0; transform: translateY(10px); }
+      5%, 28% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes topperBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .screen-topper .badge {
+      background: var(--green);
+      color: #000;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      animation: topperPulse 1.5s infinite;
+    }
+
+    @keyframes topperPulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0rem 3rem;
+      background: rgba(10, 10, 10, 0.45);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 40px;
+      z-index: 100;
+      backdrop-filter: blur(20px) saturate(180%);
+    }
+
+    .nav-left { display: flex; justify-content: flex-start; }
+    .nav-center { display: flex; justify-content: center; }
+    .nav-right { display: flex; justify-content: flex-end; }
+
+    .logo-img {
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(76, 175, 80, 0.4));
+      transition: transform 0.3s ease;
+    }
+    .logo-img:hover { transform: scale(1.08); }
+
+    .logo-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #4CAF50;
+      display: none;
+    }
+
+    .nav-cta {
+      padding: 0.8rem 2.2rem;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-cta:hover {
+      background: var(--green-bright);
+      color: #000;
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 0 35px rgba(76, 175, 80, 0.6);
+      border-color: transparent;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px;
+      transition: transform 0.3s;
+    }
+    .menu-btn:hover { transform: scale(1.1); }
+    .menu-btn span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── SIDE DRAWER ── */
+    .drawer-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+    .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+    .drawer {
+      position: fixed;
+      top: 0; left: -400px;
+      width: 400px; height: 100%;
+      background: #0a0a0a;
+      z-index: 1001;
+      padding: 6rem 3rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+      border-right: 1px solid rgba(76, 175, 80, 0.1);
+      overflow: hidden;
+    }
+    .drawer::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -20%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.15) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .drawer::after {
+      content: '';
+      position: absolute;
+      bottom: 5%; left: -10%;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(57, 255, 20, 0.1) 0%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .drawer.active { left: 0; box-shadow: 20px 0 80px rgba(76, 175, 80, 0.15); }
+
+    .drawer-close {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      color: var(--green);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 5;
+    }
+    .drawer-close:hover {
+      background: var(--green);
+      color: #000;
+      transform: rotate(180deg) scale(1.1);
+      box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+    }
+
+    .drawer-logo {
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 4rem;
+      filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.4));
+      position: relative;
+      z-index: 2;
+    }
+
+    .drawer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .drawer-links li {
+      opacity: 0;
+      transform: translateX(-30px) skewX(-10deg);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drawer.active li { opacity: 1; transform: translateX(0) skewX(0); }
+    .drawer.active li:nth-child(1) { transition-delay: 0.2s; }
+    .drawer.active li:nth-child(2) { transition-delay: 0.3s; }
+    .drawer.active li:nth-child(3) { transition-delay: 0.4s; }
+    .drawer.active li:nth-child(4) { transition-delay: 0.5s; }
+
+    .drawer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: all 0.3s;
+    }
+    .drawer-links a::before {
+      content: '';
+      width: 0; height: 2px;
+      background: var(--green);
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 10px var(--green);
+    }
+    .drawer-links a:hover {
+      color: #fff;
+      padding-left: 15px;
+      text-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+    }
+    .drawer-links a:hover::before { width: 30px; }
+
+    .drawer-footer {
+      margin-top: auto;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(76, 175, 80, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+    .drawer-status {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .drawer-status span {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+
+    /* ── HERO — BANNER BACKGROUND VERSION ── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 40px - 72px);
+      display: flex;
+      align-items: flex-end;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* ── HERO BG ── */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('main-banner.png') center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    /* Gradient overlay for text readability */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          rgba(4, 8, 4, 0.88) 0%,
+          rgba(4, 8, 4, 0.52) 38%,
+          rgba(4, 8, 4, 0.05) 68%,
+          transparent 100%),
+        linear-gradient(0deg,
+          rgba(4, 8, 4, 0.60) 0%,
+          transparent 50%);
+    }
+
+    /* Content sits on top of bg */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(76, 175, 80, 0.12);
+      border: 1px solid rgba(76, 175, 80, 0.35);
+      color: var(--green-bright);
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .hero-badge::before {
+      content: '●';
+      color: var(--green-bright);
+      font-size: 8px;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.6), 0 0 60px rgba(76,175,80,0.15);
+    }
+    .hero-title .green {
+      color: var(--green-bright);
+      text-shadow: 0 0 20px rgba(57,255,20,0.4);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(220, 220, 220, 0.85);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      max-width: 420px;
+      font-weight: 400;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-g {
+      padding: 0.85rem 2.4rem;
+      background: var(--green);
+      color: #000;
+      border: none;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 24px rgba(76,175,80,0.35);
+    }
+    .btn-g:hover {
+      background: var(--green-bright);
+      box-shadow: 0 0 36px rgba(76, 175, 80, 0.55);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      padding: 0.85rem 2.4rem;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.4);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.3s;
+      backdrop-filter: blur(6px);
+    }
+    .btn-outline:hover {
+      background: rgba(76, 175, 80, 0.1);
+      border-color: var(--green-bright);
+      color: var(--green-bright);
+      transform: translateY(-3px);
+    }
+
+    /* Stats row */
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hstat-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--green-bright);
+      text-shadow: 0 0 18px rgba(57,255,20,0.35);
+      line-height: 1;
+    }
+    .hstat-label {
+      font-size: 0.72rem;
+      color: rgba(200,200,200,0.75);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    /* Stat dividers */
+    .hstat {
+      position: relative;
+      padding-right: 3rem;
+    }
+    .hstat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 36px;
+      background: rgba(76,175,80,0.3);
+    }
+
+
+
+    /* ── SHARED SECTION STYLES ── */
+    section { background: var(--bg); }
+
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .section-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      color: var(--green);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    /* ── PRODUCTS ── */
+    #products { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.03); }
+
+    .products-header { text-align: center; margin-bottom: 3.5rem; }
+    .products-header .section-sub { margin: 0 auto; }
+    .products-header .section-title { color: #fff; }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .fbtn {
+      padding: 0.45rem 1.4rem;
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(76,175,80,0.2);
+      border-radius: 20px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .fbtn.active, .fbtn:hover {
+      border-color: var(--green-bright);
+      color: var(--green-bright);
+      background: rgba(76, 175, 80, 0.08);
+      box-shadow: 0 0 12px rgba(76,175,80,0.18);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pcard {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(76,175,80,0.15);
+      border-radius: 16px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pcard::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+      border-radius: 16px 16px 0 0;
+    }
+    .pcard:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(76,175,80,0.15), 0 4px 16px rgba(0,0,0,0.3);
+      border-color: rgba(76,175,80,0.35);
+    }
+    .pcard:hover::before { transform: scaleX(1); }
+
+    .pbadge {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+      margin-bottom: 1rem;
+    }
+    .b-new { background: rgba(76,175,80,0.1); color: var(--green); border: 1px solid rgba(76,175,80,0.25); }
+    .b-hot { background: rgba(255,80,0,0.08); color: #ff6030; border: 1px solid rgba(255,80,0,0.2); }
+    .b-sale { background: rgba(0,120,220,0.08); color: #4a9fe8; border: 1px solid rgba(0,120,220,0.15); }
+
+    .pimg {
+      width: 100%; height: 150px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .pimg img {
+      max-width: 180px; max-height: 140px;
+      object-fit: contain;
+      transition: transform 0.35s;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+    }
+    .pcard:hover .pimg img { transform: scale(1.08) rotateY(8deg); }
+
+    .pname {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .pspec {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .pfooter { display: flex; align-items: center; justify-content: space-between; }
+
+    .pprice {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-bright);
+    }
+    .pprice .old {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: line-through;
+      display: block;
+    }
+
+    .padd {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      border: 2px solid rgba(76,175,80,0.25);
+      background: transparent;
+      color: var(--green);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .padd:hover { background: var(--green); color: #000; border-color: var(--green); }
+
+    /* ── FEATURES ── */
+    #features { background: #080808; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .fcard {
+      padding: 2rem 1.5rem;
+      background: rgba(76,175,80,0.03);
+      border: 1px solid rgba(76,175,80,0.12);
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .fcard:hover {
+      background: rgba(76,175,80,0.07);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(76,175,80,0.1);
+      border-color: rgba(76,175,80,0.3);
+    }
+
+    .ficon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(76,175,80,0.15), rgba(76,175,80,0.05));
+      border: 1px solid rgba(76,175,80,0.2);
+      margin: 0 auto 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+
+    .fword {
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem; font-weight: 700;
+      color: #fff; margin-bottom: 0.5rem;
+    }
+    .fdesc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── WHY + CONTACT ── */
+    #why { background: #0a0a0a; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .why-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: rgba(76,175,80,0.25);
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .why-h4 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .why-p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+    .contact-glass {
+      background: rgba(15,15,15,0.7);
+      border: 1px solid rgba(76,175,80,0.2);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .cg-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.65rem;
+      color: var(--green);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .cg-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .cg-key { font-size: 0.82rem; color: var(--text-muted); letter-spacing: 1px; }
+    .cg-val {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.82rem;
+      color: var(--green-bright);
+      font-weight: 700;
+    }
+
+    .cg-inputs { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+
+    .cg-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .cg-input:focus { border-color: rgba(76,175,80,0.4); }
+    .cg-input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .cg-send {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--green);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.4rem;
+    }
+    .cg-send:hover {
+      background: var(--green-bright);
+      box-shadow: 0 0 24px rgba(76,175,80,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060606;
+      border-top: 1px solid rgba(76,175,80,0.1);
+      padding: 4rem 3rem 2rem;
+      max-width: 100%;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo { height: 70px; object-fit: contain; margin-bottom: 1.2rem; }
+    .footer-logo-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .footer-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; max-width: 320px; }
+
+    .footer-h {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--green-bright); }
+
+    .footer-addr { font-size: 0.88rem; color: var(--text-muted); line-height: 2; }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
+
+    .socials { display: flex; gap: 0.8rem; }
+    .soc {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(76,175,80,0.2);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', monospace;
+      transition: all 0.2s;
+    }
+    .soc:hover {
+      border-color: var(--green);
+      color: var(--green-bright);
+      background: rgba(76,175,80,0.08);
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 60px; height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.3s;
+    }
+    .wa-float:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+    }
+    .wa-float svg { width: 32px; height: 32px; fill: #fff; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .screen-topper { font-size: 0.72rem; letter-spacing: 1px; }
+
+      nav { padding: 0.5rem 1.5rem; top: 40px; }
+      .logo-img { height: 70px; }
+
+      #hero { align-items: flex-end; }
+
+
+      .hero-content {
+        padding: 2rem 1.5rem 3.5rem;
+        align-items: flex-start;
+      }
+
+      .hero-title { font-size: clamp(2rem, 6vw, 2.8rem); }
+      .hero-sub { font-size: 0.95rem; }
+
+      .hero-stats { gap: 1.5rem; }
+      .hstat { padding-right: 1.5rem; }
+
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+
+      .section-wrap { padding: 4rem 1.5rem; }
+
+      .drawer { width: 100%; left: -100%; }
+    }
+
+    @media (max-width: 600px) {
+
+      .hero-sub { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+      .hstat::after { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDE DRAWER -->
+  <div class="drawer-overlay" id="overlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <button class="drawer-close" onclick="toggleDrawer()">×</button>
+    <img src="logo-removebg-preview.png" alt="Laptop Wale" class="drawer-logo" />
+    <ul class="drawer-links">
+      <li><a href="#hero" onclick="toggleDrawer()">Home</a></li>
+      <li><a href="#products" onclick="toggleDrawer()">Products</a></li>
+      <li><a href="#features" onclick="toggleDrawer()">Features</a></li>
+      <li><a href="#why" onclick="toggleDrawer()">Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <div class="drawer-status"><span></span> ONLINE & READY</div>
+    </div>
+  </div>
+
+  <!-- SCREEN TOPPER -->
+  <div class="screen-topper">
+    <div class="topper-track">
+      <span class="fade-item"><span class="badge">OFFER</span> Buy any New Laptop & Get <b>AirPods Pro 2</b> Free! 🎧</span>
+      <span class="fade-item"><span class="badge">DEAL</span> 10% Off on Selected Laptops! 🔥</span>
+      <span class="fade-item"><span class="badge">NEW</span> Fresh Stock Arrived This Week! 💥</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <button class="menu-btn" onclick="toggleDrawer()" aria-label="Open Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-center">
+      <img src="logo-removebg-preview.png" alt="Laptop Wale" class="logo-img"
+        onerror="this.style.display='none';document.querySelector('.logo-text').style.display='block'" />
+      <span class="logo-text">LAPTOP WALE</span>
+    </div>
+    <div class="nav-right">
+      <button class="nav-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Order Now</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO — FULL BANNER BACKGROUND
+  ══════════════════════════════════════ -->
+  <section id="hero">
+
+    <div class="hero-bg"></div>
+
+    <!-- Text content overlay (bottom-left) -->
+    <div class="hero-content">
+      <div class="hero-badge">Karachi's #1 Laptop Store // Box Pack</div>
+
+      <h1 class="hero-title">
+        KARACHI'S<br>
+        <span class="green">BEST LAPTOPS</span><br>
+        BEST PRICES
+      </h1>
+
+      <p class="hero-sub">Box-pack laptops. Genuine warranty. Lowest prices in Karachi. Delivered to your doorstep.</p>
+
+      <div class="hero-btns">
+        <button class="btn-g" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore Shop</button>
+        <button class="btn-outline" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-num" id="s1">0</div>
+          <div class="hstat-label">Laptops Sold</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num" id="s2">0</div>
+          <div class="hstat-label">Brands</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num" id="s3">0</div>
+          <div class="hstat-label">Happy Customers</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <!-- ══════════════════════════════════════
+       PRODUCTS
+  ══════════════════════════════════════ -->
+  <section id="products">
+    <div class="section-wrap">
+      <div class="products-header reveal">
+        <div class="section-label">// Our Inventory</div>
+        <h2 class="section-title">PREMIUM SELECTION</h2>
+        <p class="section-sub">Hand-picked machines. Every spec verified. Authentic warranty on all units.</p>
+      </div>
+
+      <div class="filter-bar reveal">
+        <button class="fbtn active" onclick="filterP(this,'all')">All</button>
+        <button class="fbtn" onclick="filterP(this,'gaming')">Gaming</button>
+        <button class="fbtn" onclick="filterP(this,'business')">Business</button>
+        <button class="fbtn" onclick="filterP(this,'student')">Student</button>
+        <button class="fbtn" onclick="filterP(this,'workstation')">Workstation</button>
+      </div>
+
+      <div class="products-grid" id="pg">
+
+        <div class="pcard reveal" data-cat="gaming">
+          <span class="pbadge b-hot">Hot</span>
+          <div class="pimg"><img src="dell-bg.png" alt="ROG Elite Pro X" /></div>
+          <div class="pname">ROG Elite Pro X</div>
+          <div class="pspec">RTX 4070 · 32GB DDR5 · 1TB NVMe · 165Hz</div>
+          <div class="pfooter">
+            <div class="pprice"><span class="old">Rs. 380,000</span>Rs. 320,000</div>
+            <button class="padd" onclick="inquireWA('ROG Elite Pro X')">+</button>
+          </div>
+        </div>
+
+        <div class="pcard reveal" data-cat="business">
+          <span class="pbadge b-new">New</span>
+          <div class="pimg"><img src="lenovo-bg.png" alt="ThinkPad X1 Carbon" /></div>
+          <div class="pname">ThinkPad X1 Carbon</div>
+          <div class="pspec">i7-13th Gen · 16GB · 512GB SSD · Slim</div>
+          <div class="pfooter">
+            <div class="pprice"><span class="old">Rs. 220,000</span>Rs. 185,000</div>
+            <button class="padd" onclick="inquireWA('ThinkPad X1 Carbon')">+</button>
+          </div>
+        </div>
+
+        <div class="pcard reveal" data-cat="student">
+          <span class="pbadge b-sale">Sale</span>
+          <div class="pimg"><img src="hp-bg.png" alt="MacBook Air M3" /></div>
+          <div class="pname">MacBook Air M3</div>
+          <div class="pspec">M3 Chip · 8GB · 256GB · 15hr Battery</div>
+          <div class="pfooter">
+            <div class="pprice"><span class="old">Rs. 280,000</span>Rs. 245,000</div>
+            <button class="padd" onclick="inquireWA('MacBook Air M3')">+</button>
+          </div>
+        </div>
+
+        <div class="pcard reveal" data-cat="workstation">
+          <span class="pbadge b-new">New</span>
+          <div class="pimg"><img src="dell-bg.png" alt="HP ZBook Fury 16" /></div>
+          <div class="pname">HP ZBook Fury 16</div>
+          <div class="pspec">RTX 3000 Ada · 64GB ECC · 2TB RAID</div>
+          <div class="pfooter">
+            <div class="pprice">Rs. 580,000</div>
+            <button class="padd" onclick="inquireWA('HP ZBook Fury 16')">+</button>
+          </div>
+        </div>
+
+        <div class="pcard reveal" data-cat="gaming">
+          <span class="pbadge b-hot">Hot</span>
+          <div class="pimg"><img src="lenovo-bg.png" alt="Razer Blade 16" /></div>
+          <div class="pname">Razer Blade 16</div>
+          <div class="pspec">RTX 4080 · 32GB · 2TB NVMe · 240Hz</div>
+          <div class="pfooter">
+            <div class="pprice">Rs. 480,000</div>
+            <button class="padd" onclick="inquireWA('Razer Blade 16')">+</button>
+          </div>
+        </div>
+
+        <div class="pcard reveal" data-cat="business student">
+          <span class="pbadge b-new">New</span>
+          <div class="pimg"><img src="hp-bg.png" alt="Dell XPS 15" /></div>
+          <div class="pname">Dell XPS 15</div>
+          <div class="pspec">i9-13th Gen · 32GB · 1TB · OLED 4K</div>
+          <div class="pfooter">
+            <div class="pprice"><span class="old">Rs. 340,000</span>Rs. 298,000</div>
+            <button class="padd" onclick="inquireWA('Dell XPS 15')">+</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FEATURES
+  ══════════════════════════════════════ -->
+  <section id="features">
+    <div class="section-wrap" style="text-align:center;">
+      <div class="section-label reveal">// Why We're Different</div>
+      <h2 class="section-title reveal">THREE PILLARS OF TRUST</h2>
+      <div class="features-grid">
+        <div class="fcard reveal">
+          <div class="ficon">⚡</div>
+          <div class="fword">Speed</div>
+          <div class="fdesc">Next-gen processors. NVMe SSDs. We test every unit before delivery. Zero compromises.</div>
+        </div>
+        <div class="fcard reveal">
+          <div class="ficon">🛡️</div>
+          <div class="fword">Warranty</div>
+          <div class="fdesc">Full local warranty on every machine. Certified engineers. 7-day support, always.</div>
+        </div>
+        <div class="fcard reveal">
+          <div class="ficon">📦</div>
+          <div class="fword">Delivery</div>
+          <div class="fdesc">Same-day Karachi delivery. Insured, tracked, and handled with care. Nationwide available.</div>
+        </div>
+        <div class="fcard reveal">
+          <div class="ficon">💳</div>
+          <div class="fword">Easy EMI</div>
+          <div class="fdesc">0% markup installments via all major banks. Own your dream laptop today, pay later.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       WHY + CONTACT
+  ══════════════════════════════════════ -->
+  <section id="why">
+    <div class="section-wrap">
+      <div class="why-grid">
+        <div>
+          <div class="section-label reveal">// Why Laptop Wale</div>
+          <h2 class="section-title reveal">THE DIFFERENCE</h2>
+          <ul style="list-style:none;">
+            <li class="why-item reveal">
+              <span class="why-num">01</span>
+              <div>
+                <div class="why-h4">Authentic Products</div>
+                <div class="why-p">No grey-market. Every laptop comes with official box, invoice, and full local warranty.</div>
+              </div>
+            </li>
+            <li class="why-item reveal">
+              <span class="why-num">02</span>
+              <div>
+                <div class="why-h4">Expert Tech Support</div>
+                <div class="why-p">Certified engineers across all brands. Help is one call away, 7 days a week.</div>
+              </div>
+            </li>
+            <li class="why-item reveal">
+              <span class="why-num">03</span>
+              <div>
+                <div class="why-h4">Best Price Guarantee</div>
+                <div class="why-p">We match any local competitor. Best prices in Karachi — always.</div>
+              </div>
+            </li>
+            <li class="why-item reveal">
+              <span class="why-num">04</span>
+              <div>
+                <div class="why-h4">7+ Years Trusted</div>
+                <div class="why-p">Over 5,000 happy customers. Our reputation is our greatest asset.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-glass reveal">
+          <div class="cg-label">// Contact Us</div>
+          <div class="cg-row"><span class="cg-key">Location</span><span class="cg-val">Karachi, PK</span></div>
+          <div class="cg-row"><span class="cg-key">Phone</span><span class="cg-val">+92 300 000 0000</span></div>
+          <div class="cg-row"><span class="cg-key">WhatsApp</span><span class="cg-val">+92 300 000 0000</span></div>
+          <div class="cg-row"><span class="cg-key">Hours</span><span class="cg-val">10:00 – 22:00</span></div>
+          <div class="cg-row"><span class="cg-key">Status</span><span class="cg-val" style="color:#4CAF50;">● ONLINE</span></div>
+          <div class="cg-inputs">
+            <input class="cg-input" type="text" id="cgName" placeholder="Your Name" />
+            <input class="cg-input" type="text" id="cgPhone" placeholder="Phone / WhatsApp" />
+            <input class="cg-input" type="text" id="cgMsg" placeholder="Your Message" />
+            <button class="cg-send" onclick="sendContact()">Send on WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <img src="logo.webp" alt="Laptop Wale" class="footer-logo"
+          onerror="this.style.display='none';document.querySelector('.footer-logo-text').style.display='block'" />
+        <div class="footer-logo-text">LAPTOP WALE</div>
+        <p class="footer-desc">Karachi's most trusted laptop store. Premium machines, genuine warranty, unbeatable prices. Powering Pakistan's tech future since 2017.</p>
+      </div>
+      <div>
+        <div class="footer-h">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#why">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-h">Find Us</div>
+        <div class="footer-addr">
+          Shop #__, Your Area,<br>
+          Karachi, Sindh<br>
+          Pakistan<br><br>
+          Mon–Sun: 10am – 10pm
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Laptop Wale. All rights reserved.</span>
+      <div class="socials">
+        <a class="soc" href="https://instagram.com/" target="_blank">IG</a>
+        <a class="soc" href="https://facebook.com/" target="_blank">FB</a>
+        <a class="soc" href="https://wa.me/923000000000" target="_blank">WA</a>
+        <a class="soc" href="https://youtube.com/" target="_blank">YT</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="wa-float" href="https://wa.me/923000000000?text=Hello, I want to inquire about a laptop." target="_blank" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => ro.observe(r));
+
+    // ── COUNTER ANIMATION ──
+    function animNum(el, target, suffix) {
+      let n = 0;
+      const step = Math.ceil(target / 60);
+      const iv = setInterval(() => {
+        n = Math.min(n + step, target);
+        el.textContent = n.toLocaleString() + suffix;
+        if (n >= target) clearInterval(iv);
+      }, 28);
+    }
+
+    const statsObs = new IntersectionObserver(es => {
+      if (es[0].isIntersecting) {
+        animNum(document.getElementById('s1'), 5000, '+');
+        animNum(document.getElementById('s2'), 50, '+');
+        animNum(document.getElementById('s3'), 5000, '+');
+        statsObs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    statsObs.observe(document.querySelector('.hero-stats'));
+
+    // ── PRODUCT FILTER ──
+    function filterP(btn, cat) {
+      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.pcard').forEach(c => {
+        const cats = c.dataset.cat || '';
+        if (cat === 'all' || cats.includes(cat)) {
+          c.style.display = '';
+          setTimeout(() => { c.style.opacity = '1'; c.style.transform = ''; }, 10);
+        } else {
+          c.style.opacity = '0';
+          c.style.transform = 'scale(0.95)';
+          setTimeout(() => c.style.display = 'none', 280);
+        }
+      });
+    }
+
+    // ── SIDE DRAWER ──
+    function toggleDrawer() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('overlay');
+      drawer.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = drawer.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // ── WHATSAPP INQUIRY (product cards) ──
+    function inquireWA(product) {
+      const msg = encodeURIComponent(`Hello! I'm interested in the ${product}. Please share details and price.`);
+      window.open(`https://wa.me/923000000000?text=${msg}`, '_blank');
+    }
+
+    // ── CONTACT FORM → WHATSAPP ──
+    function sendContact() {
+      const name = document.getElementById('cgName').value.trim();
+      const phone = document.getElementById('cgPhone').value.trim();
+      const msg = document.getElementById('cgMsg').value.trim();
+      const text = encodeURIComponent(
+        `Hello Laptop Wale!\n\nName: ${name || 'N/A'}\nPhone: ${phone || 'N/A'}\nMessage: ${msg || 'General Inquiry'}`
+      );
+      window.open(`https://wa.me/923000000000?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+
+</html>
