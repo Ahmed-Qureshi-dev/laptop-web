@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Laptop Wale | Karachi's Trusted Store</title>
+  <link rel="icon" type="image/png" href="assets/logo-removebg-preview.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="products_styles.css">
+</head>
+
+<body>
+  <!-- ═══ FUTURISTIC PRELOADER ═══ -->
+  <div id="preloader">
+    <canvas id="preloader-canvas"></canvas>
+    <div class="loader-hex-bg"></div>
+    <div class="hud-corner tl"></div>
+    <div class="hud-corner tr"></div>
+    <div class="hud-corner bl"></div>
+    <div class="hud-corner br"></div>
+    <div class="hud-ticker">LAPTOP WALE &nbsp;·&nbsp; PRODUCTS &nbsp;·&nbsp; KARACHI, PK &nbsp;·&nbsp; EST. 2017</div>
+    <div class="hud-ticker-bottom">LOADING CATALOGUE &nbsp;·&nbsp; SECURE CONNECTION &nbsp;·&nbsp; v2.0</div>
+    <div class="hud-side left">CPU 98% · GPU RTX · MEM OK · NET SECURE</div>
+    <div class="hud-side right">BOOT · INIT · SYNC · AUTH · LAUNCH</div>
+    <div class="loader-content">
+      <div class="loader-orbital-wrap">
+        <div class="loader-ring loader-ring-1"></div>
+        <div class="loader-ring loader-ring-2"></div>
+        <div class="loader-ring loader-ring-3"></div>
+        <img src="assets/logo-removebg-preview.png" alt="Laptop Wale" class="loader-logo">
+      </div>
+      <div class="loader-status">INITIALIZING SYSTEMS</div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar-label">
+          <span>BOOT SEQUENCE</span>
+          <span id="loader-pct">0%</span>
+        </div>
+        <div class="loader-bar-track">
+          <div class="loader-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CART -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2 style="font-family:'Orbitron';">Your Cart</h2>
+      <button onclick="toggleCart()" style="background:none; border:none; color:var(--green); font-size:2rem; cursor:pointer;">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-total-row"><span>Total</span><span id="cartTotal">Rs. 0</span></div>
+      <button class="cart-checkout" onclick="checkoutCart()">PLACE ORDER ON WHATSAPP</button>
+    </div>
+  </div>
+
+  <!-- DRAWER -->
+  <div class="drawer-overlay" id="overlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <button class="drawer-close" onclick="toggleDrawer()">×</button>
+    <img src="assets/logo-removebg-preview.png" alt="Laptop Wale" class="drawer-logo" />
+    <ul class="drawer-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="#" style="color:var(--green-bright);">PRODUCTS</a></li>
+      <li><a href="index.html#features">FEATURES</a></li>
+      <li><a href="index.html#why">CONTACT</a></li>
+    </ul>
+
+    <!-- Mobile Socials -->
+    <div class="drawer-socials">
+      <a class="drawer-soc" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a class="drawer-soc" href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a class="drawer-soc" href="https://tiktok.com/" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a class="drawer-soc" href="https://wa.me/923193921895" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- Mobile CTA -->
+    <button class="nav-cta drawer-cta" onclick="window.location.href='products.html'">Order Now</button>
+
+    <div class="drawer-status" style="margin-top:2rem; font-family:'Rajdhani'; font-size:0.9rem; display:flex; align-items:center; gap:0.5rem;">
+      <span style="width:8px; height:8px; background:var(--green-bright); border-radius:50%; box-shadow:0 0 10px var(--green);"></span> ONLINE & READY
+    </div>
+  </div>
+
+
+  <!-- TOP BAR -->
+  <div class="screen-topper">
+    <div class="topper-inner">
+      <div class="topper-left">
+        <span class="t-pulse"></span>
+        <span class="t-text">SYS_STATUS: ONLINE</span>
+      </div>
+      <div class="topper-center">
+        <i class="fas fa-bolt"></i> KARACHI'S #1 TRUSTED LAPTOP STORE
+      </div>
+      <div class="topper-right">
+        <span class="t-text">v2.0.4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <button class="menu-btn" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-center">
+      <a href="index.html"><img src="assets/logo-removebg-preview.png" alt="Laptop Wale" class="logo-img"></a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount" style="display:none;">0</span>
+      </button>
+      <button class="nav-cta" onclick="toggleCart()">Order Now</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="shop-hero">
+    <h1 class="shop-title">ALL PRODUCTS</h1>
+    <p class="shop-sub">Explore our extensive catalog of box-pack premium laptops in Karachi.</p>
+  </header>
+
+  <!-- CONTROLS -->
+  <div class="shop-controls">
+    <div class="search-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" class="shop-search" id="searchInput" placeholder="Search laptops..." onkeyup="filterProducts()">
+    </div>
+    <div class="filter-wrap">
+      <select class="shop-filter" id="catFilter" onchange="filterProducts()">
+        <option value="all">Categories</option>
+        <option value="gaming">Gaming</option>
+        <option value="business">Business</option>
+        <option value="creator">Creator</option>
+      </select>
+      <select class="shop-filter" id="brandFilter" onchange="filterProducts()">
+        <option value="all">All Brands</option>
+        <option value="dell">Dell</option>
+        <option value="hp">HP</option>
+        <option value="lenovo">Lenovo</option>
+        <option value="apple">Apple</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="shop-grid" id="productsGrid"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <img src="assets/logo-removebg-preview.png" alt="Laptop Wale" class="footer-logo">
+        <p class="footer-desc">Karachi's most trusted laptop store. Premium machines, genuine warranty, unbeatable prices. Powering Pakistan's tech future since 2017.</p>
+      </div>
+      <div>
+        <div class="footer-h">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Products</a></li>
+          <li><a href="index.html#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+          <li><a href="index.html#why"><i class="fas fa-chevron-right"></i> Why Us</a></li>
+          <li><a href="index.html#why"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-h">Find Us</div>
+        <div class="footer-addr">
+          Shop #__, Your Area,<br>
+          Karachi, Sindh<br>
+          Pakistan<br><br>
+          Mon–Sun: 10am – 10pm<br>
+          <a href="tel:+923193921895" style="color:var(--green-bright);text-decoration:none;">0319-3921895</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Laptop Wale. All rights reserved.</span>
+      <div class="socials">
+        <a class="soc" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a class="soc" href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a class="soc" href="https://tiktok.com/" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a class="soc" href="https://wa.me/923193921895" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><span id="toastMsg">Added!</span></div>
+
+  <script src="products_script.js"></script>
+</body>
+</html>
