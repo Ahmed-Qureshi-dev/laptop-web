@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.renderProducts = function(data) {
       const grid = document.getElementById('productsGrid');
       grid.innerHTML = data.map(p => `
-        <div class="pcard">
+        <div class="pcard reveal">
           ${p.badge ? `<span class="pbadge ${p.badge === 'Hot' ? 'b-hot' : 'b-new'}">${p.badge}</span>` : ''}
           <div class="pimg"><img src="${p.img}"></div>
           <h3 class="pname">${p.name}</h3>
@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `).join('');
+      initReveal(); // Trigger reveal check for new items
     };
 
     window.filterProducts = function() {
@@ -122,12 +123,26 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts(products);
     updateCartUI();
 
+    // REVEAL LOGIC
+    function initReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+    initReveal();
+
     // PRELOADER REMOVAL
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
       if (preloader) {
         setTimeout(() => {
           preloader.classList.add('loaded');
+          initReveal(); // Re-trigger reveal after preloader is gone
         }, 2800);
       }
     });

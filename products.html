@@ -74,14 +74,26 @@
     </div>
   </nav>
 
+  <!-- BACKGROUND OVERLAYS -->
+  <div class="shop-bg-grid"></div>
+  <div class="shop-bg-glow"></div>
+
   <!-- HERO -->
-  <header class="shop-hero">
-    <h1 class="shop-title">ALL PRODUCTS</h1>
-    <p class="shop-sub">Explore our extensive catalog of box-pack premium laptops in Karachi.</p>
+  <header class="shop-hero reveal">
+    <div class="hero-scanline"></div>
+    <!-- HUD Corners -->
+    <div class="hud-corner tl"></div>
+    <div class="hud-corner tr"></div>
+    <div class="hud-corner bl"></div>
+    <div class="hud-corner br"></div>
+
+    <div class="hero-badge">OFFICIAL STORE // BOX PACK</div>
+    <h1 class="shop-title">ALL <span class="green">MODELS</span></h1>
+    <p class="shop-sub">Explore our extensive catalog of high-performance laptops. Genuine warranty, unbeatable prices.</p>
   </header>
 
   <!-- CONTROLS -->
-  <div class="shop-controls">
+  <div class="shop-controls reveal">
     <div class="search-wrap">
       <i class="fas fa-search"></i>
       <input type="text" class="shop-search" id="searchInput" placeholder="Search laptops..." onkeyup="filterProducts()">
