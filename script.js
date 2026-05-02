@@ -118,7 +118,7 @@ const statsObs = new IntersectionObserver(es => {
     statsObs.disconnect();
   }
 }, { threshold: 0.3 });
-statsObs.observe(document.querySelector('.stats-bar'));
+statsObs.observe(document.querySelector('.hero-stats-new'));
 
 // PRODUCT FILTER
 function filterP(btn, cat) {
