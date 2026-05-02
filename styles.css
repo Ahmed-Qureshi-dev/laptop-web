@@ -645,7 +645,7 @@ nav {
   backdrop-filter: blur(6px);
 }
 .btn-outline:hover { background: rgba(76,175,80,0.1); border-color: var(--green-bright); color: var(--green-bright); transform: translateY(-3px); }
-.hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 3.5rem; }
 .hstat-num {
   font-family: 'Orbitron', monospace;
   font-size: 1.6rem;
