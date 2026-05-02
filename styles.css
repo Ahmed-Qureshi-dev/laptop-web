@@ -645,24 +645,49 @@ nav {
   backdrop-filter: blur(6px);
 }
 .btn-outline:hover { background: rgba(76,175,80,0.1); border-color: var(--green-bright); color: var(--green-bright); transform: translateY(-3px); }
-.hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 3.5rem; }
-.hstat-num {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--green-bright);
-  text-shadow: 0 0 18px rgba(57,255,20,0.35);
-  line-height: 1;
+.stats-bar { 
+  background: rgba(10, 10, 10, 0.8); 
+  border-top: 1px solid rgba(76, 175, 80, 0.2); 
+  border-bottom: 1px solid rgba(76, 175, 80, 0.2); 
+  padding: 2.5rem 0; 
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 5;
 }
-.hstat-label { font-size: 0.72rem; color: rgba(200,200,200,0.75); letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
-.hstat { position: relative; padding-right: 3rem; }
+.stats-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 3rem;
+}
+.hstat { text-align: center; position: relative; flex: 1; }
 .hstat:not(:last-child)::after {
   content: '';
   position: absolute;
-  right: 0; top: 50%;
+  right: -1rem; top: 50%;
   transform: translateY(-50%);
-  width: 1px; height: 36px;
-  background: rgba(76,175,80,0.3);
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, transparent, var(--green), transparent);
+  opacity: 0.3;
+}
+.hstat-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--green-bright);
+  text-shadow: 0 0 20px rgba(57,255,20,0.4);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.hstat-label { 
+  font-size: 0.75rem; 
+  color: var(--text-muted); 
+  letter-spacing: 2px; 
+  text-transform: uppercase; 
+  font-weight: 700;
 }
 
 section { background: var(--bg); }
@@ -1014,8 +1039,10 @@ section { background: var(--bg); }
   animation: shineMetal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes shineMetal {
-  0% { transform: translateX(-30%) translateY(-30%) rotate(25deg); }
-  100% { transform: translateX(30%) translateY(30%) rotate(25deg); }
+  0% { transform: translateX(-30%) translateY(-30%)    statsObs.disconnect();
+  }
+}, { threshold: 0.3 });
+statsObs.observe(document.querySelector('.stats-bar'));e(25deg); }
 }
 
 .ficon { 
