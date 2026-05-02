@@ -254,6 +254,11 @@ document.head.appendChild(lScript);
 // FUTURISTIC PRELOADER — CANVAS PARTICLE ENGINE
 // ═══════════════════════════════════════════
 (function() {
+  const preloader = document.getElementById('preloader');
+  if (!preloader || sessionStorage.getItem('lw_preloader_played')) {
+    if (preloader) preloader.style.display = 'none';
+    return;
+  }
   const canvas = document.getElementById('preloader-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -403,6 +408,7 @@ document.head.appendChild(lScript);
       const preloader = document.getElementById('preloader');
       if (preloader) {
         preloader.classList.add('loaded');
+        sessionStorage.setItem('lw_preloader_played', 'true');
         setTimeout(() => {
           cancelAnimationFrame(animId);
           preloader.style.display = 'none';
