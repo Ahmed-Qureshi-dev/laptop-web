@@ -112,9 +112,9 @@ function animNum(el, target, suffix) {
 }
 const statsObs = new IntersectionObserver(es => {
   if (es[0].isIntersecting) {
-    animNum(document.getElementById('s1'), 5000, '+');
-    animNum(document.getElementById('s2'), 50, '+');
-    animNum(document.getElementById('s3'), 5000, '+');
+    animNum(document.getElementById('s1'), 3500, '+');
+    animNum(document.getElementById('s2'), 40, '+');
+    animNum(document.getElementById('s3'), 3500, '+');
     statsObs.disconnect();
   }
 }, { threshold: 0.3 });
