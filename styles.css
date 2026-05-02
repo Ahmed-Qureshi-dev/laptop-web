@@ -1570,13 +1570,21 @@ footer::before {
   .hero-content { padding: 2rem 1.5rem 3.5rem; align-items: flex-start; }
   .hero-title { font-size: clamp(2rem,6vw,2.8rem); }
   .hero-sub { font-size: 0.95rem; }
+  .hero-btns { flex-direction: column; width: 100%; }
+  .hero-btns button { width: 100%; }
 
-  /* STATS FIX */
-  .hero-stats { justify-content: space-between; gap: 0.8rem; width: 100%; margin-top: 2rem; }
-  .hstat { padding-right: 0; flex: 1; min-width: 60px; text-align: left; }
-  .hstat::after { display: none; }
-  .hstat-num { font-size: 1.2rem; }
-  .hstat-label { font-size: 0.55rem; letter-spacing: 0.5px; }
+  /* STATS BAR MOBILE */
+  .stats-bar { padding: 2rem 0; }
+  .stats-bar-inner { flex-direction: column; gap: 2.5rem; padding: 0 1.5rem; }
+  .hstat { padding-right: 0; width: 100%; }
+  .hstat:not(:last-child)::after {
+    right: 50%; top: auto; bottom: -1.25rem;
+    transform: translateX(50%);
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+  .hstat-num { font-size: 1.8rem; }
+  .hstat-label { font-size: 0.65rem; }
 
   /* CONTACT FORM FIX */
   .cg-info-grid { grid-template-columns: 1fr; gap: 0.8rem; }
