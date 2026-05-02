@@ -96,7 +96,7 @@ nav {
 /* SHOP PAGE SPECIFIC */
 .shop-hero { 
   padding: 10rem 3rem 6rem; text-align: center; position: relative; 
-  background: linear-gradient(0deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 100%), url('assets/hero_rock_base.png') center center / cover no-repeat; 
+  background: linear-gradient(0deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0.8) 100%), url('assets/hero_rock_base.png') center center / cover no-repeat; 
   margin-bottom: 2rem;
   overflow: hidden;
 }
@@ -114,7 +114,7 @@ nav {
   font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 1.5rem; font-family: 'Orbitron';
 }
-.shop-title { font-family: 'Orbitron', monospace; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; color: #fff; margin-bottom: 1.5rem; letter-spacing: 4px; text-transform: uppercase; }
+.shop-title { font-family: 'Orbitron', monospace; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; color: #fff; margin-bottom: 1.5rem; letter-spacing: 4px; text-transform: uppercase; text-shadow: 0 4px 12px rgba(0,0,0,0.8); }
 .shop-title .green { color: var(--green-bright); text-shadow: 0 0 20px rgba(57,255,20,0.4); }
 .shop-sub { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
 
