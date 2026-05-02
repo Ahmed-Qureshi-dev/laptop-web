@@ -263,6 +263,8 @@ document.head.appendChild(lScript);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
+  const isMobile = window.innerWidth < 768;
+  
   function resize() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -292,8 +294,10 @@ document.head.appendChild(lScript);
     draw() {
       ctx.save();
       ctx.globalAlpha = this.alpha;
-      ctx.shadowBlur  = 12;
-      ctx.shadowColor = '#39FF14';
+      if (!isMobile) {
+        ctx.shadowBlur  = 12;
+        ctx.shadowColor = '#39FF14';
+      }
       ctx.fillStyle   = '#39FF14';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
@@ -302,11 +306,12 @@ document.head.appendChild(lScript);
     }
   }
 
-  const PARTICLE_COUNT = 120;
+  const PARTICLE_COUNT = isMobile ? 45 : 120;
   const particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
-  const CONNECTION_DIST = 100;
+  const CONNECTION_DIST = isMobile ? 0 : 100;
 
   function drawConnections() {
+    if (CONNECTION_DIST === 0) return;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
