@@ -92,7 +92,7 @@ nav {
 .filter-wrap { display: flex; gap: 1rem; }
 .shop-filter { background: #000; border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.8rem 1.5rem; border-radius: 12px; cursor: pointer; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 
-.shop-grid { max-width: 1400px; margin: 0 auto 10rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2.5rem; padding: 0 2rem; }
+.shop-grid { max-width: 1400px; margin: 0 auto 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2.5rem; padding: 0 2rem; }
 
 /* PRODUCT CARD */
 .pcard { background: #050505; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 2rem; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; display: flex; flex-direction: column; }
@@ -120,7 +120,14 @@ nav {
 
 /* FOOTER SYNCED */
 footer { background: #060606; border-top: 1px solid rgba(76,175,80,0.1); padding: 4rem 3rem 2rem; max-width: 100%; position: relative; overflow: hidden; }
-footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 2px; background: linear-gradient(90deg, transparent, var(--green-bright), transparent); }
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green-bright), transparent);
+}
 .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
 .footer-logo { height: 70px; object-fit: contain; margin-bottom: 1.2rem; }
 .footer-logo-text { font-family: 'Orbitron', monospace; font-size: 1.4rem; font-weight: 900; color: var(--green); margin-bottom: 1rem; display: none; }
@@ -134,10 +141,36 @@ footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: 
 .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: space-between; }
 .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
 .socials { display: flex; gap: 0.8rem; }
-.soc { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(76,175,80,0.2); color: var(--text-muted); text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
-.soc::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(76,175,80,0.2), rgba(76,175,80,0.05)); opacity: 0; transition: opacity 0.3s; }
+.soc {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(76,175,80,0.2);
+  color: var(--text-muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.soc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(76,175,80,0.2), rgba(76,175,80,0.05));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 .soc:hover::before { opacity: 1; }
-.soc:hover { border-color: var(--green); color: var(--green-bright); transform: translateY(-3px); box-shadow: 0 5px 20px rgba(76,175,80,0.2); }
+.soc:hover {
+  border-color: var(--green);
+  color: var(--green-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(76,175,80,0.2);
+}
 .soc i { position: relative; z-index: 1; }
 
 /* MOBILE RESPONSIVE NAV */
@@ -171,9 +204,11 @@ footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: 
   .shop-hero { background: url('assets/hero_rock_base.png') center center / cover no-repeat; padding: 2rem 1.5rem 4rem; }
   .shop-controls { flex-direction: column; padding: 1.5rem; gap: 1rem; }
   .filter-wrap { width: 100%; flex-direction: column; }
-  .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-  .footer-desc { margin: 0 auto; }
-  .footer-bottom { flex-direction: column; gap: 1.5rem; align-items: center; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+@media (max-width: 600px) {
+  footer { padding: 3rem 1.2rem 1.5rem; }
 }
 
 .toast { position: fixed; bottom: 40px; right: 2rem; background: var(--green-dark); color: #fff; padding: 1rem 2rem; border-radius: 12px; font-weight: 700; z-index: 3000; transform: translateX(150%); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
