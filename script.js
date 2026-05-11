@@ -361,7 +361,7 @@ document.head.appendChild(lScript);
   }
   loop();
 
-  // Live % counter synced to the CSS bar animation (1.8s)
+  // Live % counter synced to the CSS bar animation (1.2s)
   const pctEl = document.getElementById('loader-pct');
   const statusEl = document.querySelector('.loader-status');
   const messages = [
@@ -375,11 +375,11 @@ document.head.appendChild(lScript);
   let pct = 0;
   const keyframes = [
     { t: 0,    v: 0   },
-    { t: 180,  v: 5   },
-    { t: 540,  v: 30  },
-    { t: 990,  v: 60  },
-    { t: 1440, v: 88  },
-    { t: 1800, v: 100 }
+    { t: 120,  v: 5   },
+    { t: 360,  v: 30  },
+    { t: 660,  v: 60  },
+    { t: 960,  v: 88  },
+    { t: 1200, v: 100 }
   ];
   const start = Date.now();
 
@@ -407,8 +407,12 @@ document.head.appendChild(lScript);
     if (pct >= 100) clearInterval(pctInterval);
   }, 40);
 
-  // Dismiss preloader
+  // Dismiss preloader after 3 seconds on desktop, 2 seconds on mobile
   window.addEventListener('load', () => {
+    const isMobile = window.innerWidth < 768;
+    const dismissDelay = isMobile ? 1200 : 1800;
+    const hideDelay = isMobile ? 600 : 1200;
+    
     setTimeout(() => {
       const preloader = document.getElementById('preloader');
       if (preloader) {
@@ -417,9 +421,9 @@ document.head.appendChild(lScript);
         setTimeout(() => {
           cancelAnimationFrame(animId);
           preloader.style.display = 'none';
-        }, 1200);
+        }, hideDelay);
       }
-    }, 1800);
+    }, dismissDelay);
   });
 })();
 
