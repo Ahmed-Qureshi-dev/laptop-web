@@ -361,7 +361,7 @@ document.head.appendChild(lScript);
   }
   loop();
 
-  // Live % counter synced to the CSS bar animation (2.8s)
+  // Live % counter synced to the CSS bar animation (1.8s)
   const pctEl = document.getElementById('loader-pct');
   const statusEl = document.querySelector('.loader-status');
   const messages = [
@@ -375,11 +375,11 @@ document.head.appendChild(lScript);
   let pct = 0;
   const keyframes = [
     { t: 0,    v: 0   },
-    { t: 280,  v: 5   },
-    { t: 840,  v: 30  },
-    { t: 1540, v: 60  },
-    { t: 2240, v: 88  },
-    { t: 2800, v: 100 }
+    { t: 180,  v: 5   },
+    { t: 540,  v: 30  },
+    { t: 990,  v: 60  },
+    { t: 1440, v: 88  },
+    { t: 1800, v: 100 }
   ];
   const start = Date.now();
 
@@ -417,9 +417,9 @@ document.head.appendChild(lScript);
         setTimeout(() => {
           cancelAnimationFrame(animId);
           preloader.style.display = 'none';
-        }, 1800);
+        }, 1200);
       }
-    }, 2900);
+    }, 1800);
   });
 })();
 
